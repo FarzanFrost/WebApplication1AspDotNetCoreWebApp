@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ApplicationType>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary"> Application Type List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="ApplicationType" asp-action="Create" class="btn btn-primary">
+                Create New Application Type
+            </a>
+        </div>
+    </div>
+
+    <br /> <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="w-100 table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Application Type Name
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td width="80%">@obj.Name</td>
+                        <td>
+                            <a asp-controller="ApplicationType" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-dark mx-2">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a asp-controller="ApplicationType" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Application Type Exists</p>
+    }
+</div>
+

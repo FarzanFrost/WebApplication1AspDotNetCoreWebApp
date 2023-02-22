@@ -1,0 +1,62 @@
+﻿@model Category
+
+@*Here asp-action will look for create funcion/action in controller*@
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info pt-3">Add Category</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group row p-2">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group row p-2">
+                <div class="col-4">
+                    @*In asp-for we reference the variable in Categor.cs model, its display name can be changed using annotations*@
+                    <label asp-for="DisplayOrder"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="DisplayOrder" class="form-control" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group row p-2">
+                <div class="col-8 offset-4 row">
+                    
+                    <div class="col">
+                        <input type="submit" class="btn btn-info w-100" value="Create" />
+                    </div>
+                    <div class="col">
+                        @*since we are going back to the page which has the same controller asp-controller is not required*@
+                        <a asp-action="Index" class="btn btn-success w-100">
+                            <i class="fa-solid fa-right-from-bracket"></i> &nbsp; Back
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-4">
+            @*keep this empty*@
+        </div>
+    </div>
+</form>
+
+@*client side validation is added below, here any js can be added, here the validation it automatically taken care of*@
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
