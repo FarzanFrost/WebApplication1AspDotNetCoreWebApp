@@ -8441,6 +8441,14 @@
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-v4compatibility.woff2"
     },
     {
+      "Id": "E:\\Practice projects\\.Net\\WebApplication1AspDotNetCoreWebApp\\WebApplication1AspDotNetCoreWebApp\\wwwroot\\images\\product\\4548ed91-24ce-4669-a691-863d4e8f67b9.jpeg",
+      "PackagePath": "staticwebassets\\images\\product\\4548ed91-24ce-4669-a691-863d4e8f67b9.jpeg"
+    },
+    {
+      "Id": "E:\\Practice projects\\.Net\\WebApplication1AspDotNetCoreWebApp\\WebApplication1AspDotNetCoreWebApp\\wwwroot\\images\\product\\f6f57bd5-ff65-45a5-8235-471ada6a99a9.png",
+      "PackagePath": "staticwebassets\\images\\product\\f6f57bd5-ff65-45a5-8235-471ada6a99a9.png"
+    },
+    {
       "Id": "E:\\Practice projects\\.Net\\WebApplication1AspDotNetCoreWebApp\\WebApplication1AspDotNetCoreWebApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

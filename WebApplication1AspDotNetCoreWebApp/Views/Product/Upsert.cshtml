@@ -6,7 +6,7 @@
 
 @*since we are using images, we add enctype with this value*@
 <form method="post" enctype="multipart/form-data">
-    @if (Model.Product.Id != 0 && Model.Product.Id != null)
+    @if (Model.Product.Id != 0)
     {
         title = "Edit Product";
         <input asp-for="Product.Id" hidden />

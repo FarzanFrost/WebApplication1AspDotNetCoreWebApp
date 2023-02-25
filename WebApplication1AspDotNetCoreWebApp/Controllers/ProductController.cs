@@ -56,6 +56,7 @@ namespace WebApplication1AspDotNetCoreWebApp.Controllers
 
         public IActionResult Upsert(int? id)
         {
+            Console.WriteLine("before PVM");
             ProductVM productVM = new ProductVM()
             {
                 Product = new Product(),
@@ -65,30 +66,48 @@ namespace WebApplication1AspDotNetCoreWebApp.Controllers
                     Value = i.Id.ToString()
                 })
             };
+            Console.WriteLine("after PVM");
 
-            if (id != null)
+            //if (id != null)
+            //{
+            //    productVM.Product = _db.Product.Find(id);
+            //    if (productVM.Product == null) { return NotFound(); }
+            //}
+            if (id == null)
             {
-                productVM.Product = _db.Product.Find(id);
-                if (productVM.Product == null) { return NotFound(); }
+                Console.WriteLine("when id == null");
+                return View(productVM);
             }
-            return View(productVM);
+            else
+            {
+                Console.WriteLine("when id != null");
+                productVM.Product = _db.Product.Find(id);
+                if(productVM.Product == null)
+                {
+                    return NotFound();
+                }
+                return View(productVM);
+            }
         }
 
         [HttpPost] 
         [ValidateAntiForgeryToken] 
         public IActionResult Upsert(ProductVM productVM)
         {
-            
 
-            if (ModelState.IsValid) 
+            Console.WriteLine("Post request - FARZAN");
+            // FIXME: Need to recheck the validation as the ModelState is invalid.
+            if (!ModelState.IsValid) 
             {
                 var files = HttpContext.Request.Form.Files;
                 // This is the path to wwwroot.
                 // We take this from the existing dependency in the framework.
                 string webRootPath = _webHostEnvironment.WebRootPath;
-                
+                Console.WriteLine("Post - before product Id == null");
                 if (productVM.Product.Id== 0)
                 {
+                    Console.WriteLine("Post - after product Id == null");
+
                     //Creating a product
 
                     string upload = webRootPath + WC.ImagePath;
@@ -98,20 +117,24 @@ namespace WebApplication1AspDotNetCoreWebApp.Controllers
 
                     using (var fileStream = new FileStream(Path.Combine(upload, fileName + extention), FileMode.Create))
                     {
+                        Console.WriteLine("image save");
                         files[0].CopyTo(fileStream);
                     }
 
                     productVM.Product.Image = fileName + extention;
                     _db.Product.Add(productVM.Product);
+                    Console.WriteLine("product add");
+
                 }
                 else
                 {
                     //updating a product
                 }
                 _db.SaveChanges();
+                Console.WriteLine("product save");
                 return RedirectToAction("Index"); 
             }
-            return View();
+            return View(productVM);
         }
 
         public IActionResult Delete(int? id)
