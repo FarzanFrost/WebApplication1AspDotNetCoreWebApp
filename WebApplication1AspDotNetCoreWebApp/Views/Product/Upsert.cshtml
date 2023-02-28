@@ -71,6 +71,18 @@
 
             </div>
             <div class="form-group row p-2">
+                <div class="col-4">
+                    <label asp-for="Product.ApplicationTypeId"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Product.ApplicationTypeId" asp-items="@Model.ApplicationTypeSelectList" class="form-control">
+                        <option selected disabled>--Select Application Type--</option>
+                    </select>
+                    <span asp-validation-for="Product.ApplicationTypeId" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group row p-2">
                 <div class="col-8 offset-4 row">
 
                     <div class="col">
@@ -92,8 +104,12 @@
 
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-4 pt-4">
             @*keep this empty*@
+            @if(Model.Product.Id != 0)
+            {
+            <img src="@WC.ImagePath@Model.Product.Image" width="100%" style="border-radius:5px; border: 1px solid #bbb" />
+            }
         </div>
     </div>
 </form>

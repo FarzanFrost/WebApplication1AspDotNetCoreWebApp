@@ -11,6 +11,8 @@ namespace WebApplication1AspDotNetCoreWebApp.Models
         [Required]
         public string Name { get; set; }
 
+        public string shortDesc { get; set; }
+
         public string Description { get; set; }
 
         [Range(1,int.MaxValue)]
@@ -25,6 +27,12 @@ namespace WebApplication1AspDotNetCoreWebApp.Models
         public virtual Category Category { get; set; } //This automatically adds mapping between Product and Category.
                                                        //It will also create a Category Id column while will be hidden,
                                                        //to make it visible, add category id variable above in this code.
+        [Display(Name = "Application Type")]
+        public int ApplicationTypeId { get; set; }
+
+        [ForeignKey("ApplicationTypeId")]
+        public virtual ApplicationType ApplicationType { get; set; }
+
 
     }
 }
